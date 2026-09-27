@@ -1,7 +1,12 @@
-export async function obterUtilizador() {
-  const resposta = await fetch(
-    "https://jsonplaceholder.typicode.com/users/1"
-  );
+const res = await fetch(
+  "https://api.github.com/repos/nodejs/node"
+);
 
-  return await resposta.json();
+if (!res.ok) {
+  throw new Error(`HTTP ${res.status}`);
 }
+
+const repo = await res.json();
+
+console.log(repo.name);
+console.log(repo.stargazers_count);
